@@ -60,7 +60,7 @@ bool commonImageProcessor::getLastRGBData(yarp::sig::FlexImage& data, yarp::os::
 
     m_port_mutex.lock();
     data = m_lastRGBImage;
-    stmp = m_lastStamp;
+    //stmp = m_lastStamp;    ///@@@<-SEGFAULT
     m_port_mutex.unlock();
     return true;
 }
@@ -79,7 +79,7 @@ bool commonImageProcessor::getLastDepthData(yarp::sig::ImageOf<yarp::sig::PixelF
 
     m_port_mutex.lock();
     data = m_lastDepthImage;
-    stmp = m_lastStamp;
+    //stmp = m_lastStamp;    ///@@@<-SEGFAULT
     m_port_mutex.unlock();
     return true;
 }
@@ -183,7 +183,7 @@ bool commonImageProcessor::getIntrinsicParam(yarp::os::Property& intrinsic) cons
         yCError(RGBD_ROS) << "Unsupported distortion model";
     }
     params.toProperty(intrinsic);
-    return false;
+    return true;    ///@@@<-was false???
 }
 
 
